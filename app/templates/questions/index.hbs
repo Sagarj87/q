@@ -1,0 +1,6 @@
+questions/index
+{{#each model as |question|}}
+    {{question-widget question=question}}
+{{/each}}
+
+<i>{{#link-to 'questions.new'}}Add a new Question{{/link-to}}</i>
