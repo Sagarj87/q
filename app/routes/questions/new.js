@@ -3,7 +3,6 @@ import Route from '@ember/routing/route';
 export default Route.extend({
     actions: {
         createQuestion() {
-            debugger
             var that = this;
             
             var askedBy = that.store.createRecord("user",{
@@ -16,7 +15,8 @@ export default Route.extend({
                 "question": that.get("controller.question"),
                 "answers": Ember.A([]),
                 "description":"",
-                "id": that.get("controller.question")
+                "id": that.get("controller.question"),
+                "askedBy": askedBy
             });
 
             askedBy.save().then(function(askedBy_){
@@ -25,7 +25,7 @@ export default Route.extend({
                     
                 });
             });
-            that.transitionTo('questions.question',question);
+            that.transitionTo('questions.question',question.toJSON());
         }
     }
 });
